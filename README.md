@@ -1,9 +1,7 @@
 # 6toSemestre
 
 Here lie the sources of delirium and despair, 
-
 they are help for some,
-
 shadows for others.
 
 
