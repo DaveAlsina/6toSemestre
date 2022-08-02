@@ -1,0 +1,8 @@
+tests
+__python__
+.ipynb_checkpoints
+*.out
+*.aux
+*.log
+ia/miniproyectos/mini*/__pycache__/
+ia/taller/notebook*/__pycache__/

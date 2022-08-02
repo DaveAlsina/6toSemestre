@@ -1571,14 +1571,19 @@ class Parser:
             return list_temp
 
     def test_objetivo(self, estado):
-#        print(estado)
+        print(estado)
         nonterminal = set([a_tuple[0] for a_tuple in self.gramatica])
         list_final = []
-        construct = self.constructor(estado, 0, nonterminal, list_final)
-#        print(construct)
-#        print(self.w)
+        construct = self.constructor(estado = estado,
+                                     ind    = 0,
+                                     nonterminal = nonterminal,
+                                     list_final  = list_final)
+        print(construct)
+        #print(self.w)
         w_l = list(self.w)
         return construct == w_l
 
     def costo(self, estado, accion):
         return 1
+
+
