@@ -1,6 +1,7 @@
 tests
+local
 __python__
-.ipynb_checkpoints
+*.ipynb_checkpoints
 *.out
 *.aux
 *.log
