@@ -1,0 +1,19 @@
+#!/bin/bash
+cd $HOME/Documents/univ/6tosemestre
+
+echo "Pulling changes..."
+git pull
+echo "--------------------------------------------"
+
+echo "Adding changes..."
+git add -v *
+echo "--------------------------------------------"
+
+echo "Committing changes..."
+git commit -v -m "Sync of files from: $(hostname) $(date)"
+echo "--------------------------------------------"
+
+echo "Pushing changes..."
+git push
+
+
