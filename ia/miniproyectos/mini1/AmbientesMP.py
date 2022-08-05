@@ -1495,16 +1495,29 @@ class Parser:
     '''
     @Autor: Samuel Pérez
     '''
-    def __init__(self, gramatica=None, w=None):
+    def __init__(self,
+                 gramatica: list,
+                 w: str):
+
         if gramatica is None:
             raise RuntimeError('¡Se necesita una gramática!')
+
         self.gramatica = gramatica
-        self.estado_inicial = {0:(gramatica[0][0], [])}
         self.w = w
+
+        #diccionario de la forma:
+        # {
+        #   numero_de_estado: (letra_no_terminal, [acciones_aplicables]),
+        #   numero_de_estado: (letra_no_terminal, [acciones_aplicables]),
+        #   ...
+        # }
+        self.estado_inicial = {0: (gramatica[0][0], [])}
+
 
     def arbol(self, t, estado):
         rotulo = estado[t][0]
         hijos = estado[t][1]
+
         if len(hijos) > 0:
             return Tree(rotulo, [self.arbol(i, estado) for i in hijos])
         else:
@@ -1540,11 +1553,13 @@ class Parser:
     def acciones_aplicables(self, estado):
         acciones = []
         ultis = self.ulti(estado)
+
         for u_esta in ultis:
             print(u_esta)
             reescritura = self.reescritura_nodo(u_esta, estado)
             for sim in reescritura:
                 acciones.append((u_esta, sim))
+
         return acciones
 
     def transicion(self, estado, accion):
