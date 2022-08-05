@@ -1507,14 +1507,15 @@ class Parser:
 
         #diccionario de la forma:
         # {
-        #   numero_de_estado: (letra_no_terminal, [acciones_aplicables]),
-        #   numero_de_estado: (letra_no_terminal, [acciones_aplicables]),
-        #   ...
+        #   numero_de_estado: (letra_no_terminal, [acciones_aplicables])
         # }
         self.estado_inicial = {0: (gramatica[0][0], [])}
 
-
     def arbol(self, t, estado):
+        #1. ¿Qué forma tiene un estado? 
+        #2. ¿Qué es eso de t?
+        #3. ¿Qué hace la función?
+
         rotulo = estado[t][0]
         hijos = estado[t][1]
 
@@ -1545,6 +1546,7 @@ class Parser:
     def reescritura_nodo(self, u_esta, estado):
         simbolo = estado[u_esta][0]
         nonterminal = set([a_tuple[0] for a_tuple in self.gramatica])
+
         if simbolo not in nonterminal:
             return []
         reescritura = [a_tuple[1] for a_tuple in self.gramatica if a_tuple[0] == simbolo]
@@ -1565,6 +1567,7 @@ class Parser:
     def transicion(self, estado, accion):
         es_accion = copy.deepcopy(estado)
         es_accion[accion[0]][1].clear()
+
         for sim in list(accion[1]):
             keys_estados = list(es_accion.keys())
             new_est = keys_estados[-1] + 1
@@ -1595,6 +1598,7 @@ class Parser:
                                      list_final  = list_final)
         print(construct)
         #print(self.w)
+
         w_l = list(self.w)
         return construct == w_l
 
