@@ -1557,7 +1557,7 @@ class Parser:
         ultis = self.ulti(estado)
 
         for u_esta in ultis:
-            print(u_esta)
+            #print(u_esta)
             reescritura = self.reescritura_nodo(u_esta, estado)
             for sim in reescritura:
                 acciones.append((u_esta, sim))
@@ -1589,18 +1589,16 @@ class Parser:
             return list_temp
 
     def test_objetivo(self, estado):
-        print(estado)
-        nonterminal = set([a_tuple[0] for a_tuple in self.gramatica])
-        list_final = []
-        construct = self.constructor(estado = estado,
-                                     ind    = 0,
-                                     nonterminal = nonterminal,
-                                     list_final  = list_final)
-        print(construct)
-        #print(self.w)
+        arb = self.arbol(0, estado)
 
-        w_l = list(self.w)
-        return construct == w_l
+        if type(arb) == str:
+            return self.w == arb
+
+        cadena = arb.leaves()
+        w = "".join(cadena)
+
+        #print("cadena {}, w {}, self.w {}".format(cadena, w, self.w))
+        return w == self.w
 
     def costo(self, estado, accion):
         return 1
