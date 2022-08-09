@@ -118,6 +118,7 @@ def breadth_first_search(problema):
             return nodo
     frontera = [nodo]
     explorados = []
+
     while len(frontera) > 0:
         nodo = frontera.pop(0)
         explorados.append(nodo.codigo)
@@ -184,8 +185,10 @@ def best_first_search(problema, f=None):
     nodo = Nodo(s, None, None, 0, problema.codigo(s))
     frontera = ListaPrioritaria()
     frontera.push(nodo, 0)
+
     explorados = {}
     explorados[cod] = 0
+
     while not frontera.is_empty():
         nodo = frontera.pop()
         if problema.test_objetivo(nodo.estado):
