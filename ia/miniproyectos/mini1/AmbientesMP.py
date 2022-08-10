@@ -1577,6 +1577,18 @@ class Parser:
         u_esta = keys_estados[-1]
         return es_accion
 
+    def codigo(self, estado):
+
+        arb = self.arbol(0, estado)
+
+        if type(arb) == str:
+            return arb
+        
+        cadena = arb.leaves()
+        w = "".join(cadena)
+
+        return w
+
 
     def test_objetivo(self, estado):
         arb = self.arbol(0, estado)
