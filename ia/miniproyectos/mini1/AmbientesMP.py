@@ -1577,16 +1577,6 @@ class Parser:
         u_esta = keys_estados[-1]
         return es_accion
 
-    def constructor(self, estado, ind, nonterminal, list_final):
-        simb = estado[ind][0]
-        if simb not in nonterminal:
-            list_final.append(simb)
-            return list_final
-        else:
-            list_temp = []
-            for i in estado[ind][1]:
-               list_temp = self.constructor(estado, i, nonterminal, list_final)
-            return list_temp
 
     def test_objetivo(self, estado):
         arb = self.arbol(0, estado)
