@@ -14,7 +14,7 @@ def obtiene_tiempos(fun, args, num_it=10):
         tiempos_fun.append(para - arranca)
     return tiempos_fun
 
-def compara_funciones(funs, arg, nombres, N=10):
+def compara_funciones(funs = None, arg = None, nombres = None, N=10):
     nms = []
     ts = []
     for i, fun in enumerate(funs):
