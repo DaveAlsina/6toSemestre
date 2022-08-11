@@ -20,6 +20,7 @@ def nodo_hijo(problema, madre, accion):
     estado = problema.transicion(madre.estado, accion)
     costo_camino = madre.costo_camino + problema.costo(madre.estado, accion)
     codigo = problema.codigo(estado)
+
     return Nodo(estado, madre, accion, costo_camino, codigo)
 
 def solucion(n):
