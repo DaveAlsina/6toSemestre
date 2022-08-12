@@ -115,15 +115,36 @@ class ExampleGrammars():
         """
 
         i = randint(word_interval_len[0], word_interval_len[1] - 1)
-        print(i)
-        j = randint(word_interval_len[0], word_interval_len[1] - i)
-        print(j)
+        remaining_minumum_letters = 1 if (word_interval_len[0] - i) < 0 else word_interval_len[0] - i
+        remaining_maximum_letters = 1 if (word_interval_len[1] - i) < 0 else word_interval_len[1] - i
 
+        j = randint(remaining_minumum_letters, remaining_maximum_letters)
 
         m = i if i > j  else j
         n = i if m ==j else j
         
         return ("a"*m) + ("b"*n)  
+
+    def generate_word_grammar4(self) -> str:
+
+        """
+            Generates a word from the grammar 4.
+
+            Input: word_interval_len -> tuple, is the interval of the word length.
+                   meaning the word length will be between the values of the tuple.
+        """
+
+        
+        opt = choice((1, 2, 3, 4))
+
+        if opt == 1:
+            return "10101"
+        elif opt == 2:
+            return "01010"
+        elif opt == 3:
+            return "1001"
+        elif opt == 4:
+            return "0110"
 
 
 
