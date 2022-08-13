@@ -14,7 +14,7 @@ class ExampleGrammars():
                    ('A', 'a'), ('B', 'b')], 
 
             # grammar of the form:
-            # a^{j} b^{i} c^{i} d^{j}, same number of a's and c's, 
+            # a^{j} b^{i} c^{i} d^{j}, i, j > 0, same number of a's and c's, 
             # and same number of b's and d's, where i and j are integers.
 
             2:    [('S', 'aWd'), ('W', 'aWd'), ('W', 'V'),
@@ -68,7 +68,7 @@ class ExampleGrammars():
             ans = self.generate_word_grammar3(word_interval_len)
 
         elif grammar_num == 4:
-            ans = self.generate_word_grammar4()
+            ans = self.generate_word_grammar4(word_interval_len)
 
         return ans
 
@@ -76,7 +76,6 @@ class ExampleGrammars():
 
         """
             Generates a word from the grammar 1.
-
             Input: word_interval_len -> tuple, is the interval of the word length.
                    meaning the word length will be between the values of the tuple.
         """
@@ -90,13 +89,12 @@ class ExampleGrammars():
 
         """
             Generates a word from the grammar 2.
-
             Input: word_interval_len -> tuple, is the interval of the word length.
                    meaning the word length will be between the values of the tuple.
         """
 
-        i = randint(word_interval_len[0]//2 , word_interval_len[1]//2)
-        j = randint(word_interval_len[0]//2 , (word_interval_len[1] - i)//2)
+        i = randint((word_interval_len[0])//4 , ((word_interval_len[1])//4))
+        j = randint((word_interval_len[0] + 1)//4 , ((word_interval_len[1] - i)//4))
 
         n = choice((i, j)) 
         m = j if n == i else i
@@ -109,7 +107,6 @@ class ExampleGrammars():
 
         """
             Generates a word from the grammar 2.
-
             Input: word_interval_len -> tuple, is the interval of the word length.
                    meaning the word length will be between the values of the tuple.
         """
@@ -125,31 +122,30 @@ class ExampleGrammars():
         
         return ("a"*m) + ("b"*n)  
 
-    def generate_word_grammar4(self) -> str:
+    def generate_word_grammar4(self, word_interval_len: tuple) -> str:
 
         """
             Generates a word from the grammar 4.
-
             Input: word_interval_len -> tuple, is the interval of the word length.
                    meaning the word length will be between the values of the tuple.
         """
 
-        
+        i = randint((word_interval_len[0])//2 , ((word_interval_len[1])//2))
+        j = randint((word_interval_len[0])//2 , ((word_interval_len[1] - i)//2))
+
+        n = choice((i, j)) 
+        m = j if n == i else i
+
         opt = choice((1, 2, 3, 4))
 
         if opt == 1:
-            return "10101"
+            return ("1"*n) + ("0"*m) + ("1"*n)
+
         elif opt == 2:
-            return "01010"
+            return ("0"*n) + ("1"*m) + ("0"*n)
+        
         elif opt == 3:
-            return "1001"
+            return ("1") + ("01"*m) + ("01")
+        
         elif opt == 4:
-            return "0110"
-
-
-
-
-
-
-
-
+            return ("0") + ("10"*m) + ("10")
