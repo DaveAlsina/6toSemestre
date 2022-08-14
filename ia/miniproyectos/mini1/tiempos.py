@@ -1,4 +1,4 @@
-from time import time
+from time import time, sleep
 from tqdm.auto import tqdm
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -44,10 +44,12 @@ def compara_funciones_sobreargumentos(funs, args, nombres, N=10):
             ts += obtiene_tiempos(fun, [arg], N)
 
             pbar2.update()
+            sleep(0.1)
 
 
         data_list.append(pd.DataFrame({'Función':nms, 'Num_argumento':argumentos, 'Tiempo':ts}))
         pbar.update()
+        sleep(0.1)
 
     return pd.concat(data_list)
 
