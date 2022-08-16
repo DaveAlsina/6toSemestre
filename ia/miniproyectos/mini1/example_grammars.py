@@ -154,7 +154,30 @@ class ExampleGrammars():
 
     def generate_exact_word(self, grammar_num: int, wlen: int) -> str:
 
-        pass
+        """
+            Generates a word from a grammar. This could be done by a recursive function,
+            or going through the grammar and generating a word from each rule. but
+            I felt lazy enough to do it this way.
+        """
+
+        if grammar_num not in self.grammars.keys():
+                
+                print("Please select a valid grammar number")
+                print("available grammars: {}".format(self.grammars.keys()))
+                return None
+
+        ans = ""
+
+        if grammar_num == 1:
+            ans = self.generate_exact_word_grammar1(wlen)
+
+        elif grammar_num == 2:
+            ans = self.generate_exact_word_grammar2(wlen)
+
+        elif grammar_num == 3:
+            ans = self.generate_exact_word_grammar3(wlen)
+
+        return ans
 
 
     def generate_exact_word_grammar1(self, wlen: int) -> str:
@@ -175,7 +198,6 @@ class ExampleGrammars():
 
         # gets a number between 0 and 1
         r = uniform(0, 1)
-        print(r)
 
         i = int( (r*wlen)//2 )
         j = int( ((1 -r)*wlen)//2 )
@@ -200,7 +222,6 @@ class ExampleGrammars():
     
             # gets a number between 0 and 1
             r = uniform(0, 1)
-            print(r)
     
             i = int( (r*wlen) )
             j = int( ((1 -r)*wlen) )
@@ -210,8 +231,8 @@ class ExampleGrammars():
             if j >= placeholders:
                 i = j
                 j = placeholders
+            
 
-    
             if (i+j) < wlen:
 
                 if i > j:
