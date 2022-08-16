@@ -1,4 +1,4 @@
-from random import randint, choice
+from random import randint, choice, uniform
 
 class ExampleGrammars():
 
@@ -14,7 +14,7 @@ class ExampleGrammars():
                    ('A', 'a'), ('B', 'b')], 
 
             # grammar of the form:
-            # a^{j} b^{i} c^{i} d^{j}, i, j > 0, same number of a's and c's, 
+            # a^{j} b^{i} c^{i} d^{j}, i, j >= 0, same number of a's and c's, 
             # and same number of b's and d's, where i and j are integers.
 
             2:    [('S', 'aWd'), ('W', 'aWd'), ('W', 'V'),
@@ -149,3 +149,83 @@ class ExampleGrammars():
         
         elif opt == 4:
             return ("0") + ("10"*m) + ("10")
+
+
+
+    def generate_exact_word(self, grammar_num: int, wlen: int) -> str:
+
+        pass
+
+
+    def generate_exact_word_grammar1(self, wlen: int) -> str:
+
+        """
+            Generates a word from the grammar 1.
+            wlen: the length of the word. should be an even number.
+        """
+        return "a"*(wlen//2) + "b"*(wlen//2)
+
+
+    def generate_exact_word_grammar2(self, wlen: int) -> str:
+
+        """
+            Generates a word from the grammar 2.
+            wlen: the length of the word. should be an even number.
+        """
+
+        # gets a number between 0 and 1
+        r = uniform(0, 1)
+        print(r)
+
+        i = int( (r*wlen)//2 )
+        j = int( ((1 -r)*wlen)//2 )
+
+        if (i+j) < wlen:
+            which = choice((0, 1))
+
+            if which == 0:
+                j += 1
+            else:
+                i += 1
+
+
+        return ("a"*i) + ("b"*j) + ("c"*j) + ("d"*i)
+
+    def generate_exact_word_grammar3(self, wlen: int) -> str:
+            
+            """
+                Generates a word from the grammar 3.
+                wlen: the length of the word. should be an even number.
+            """
+    
+            # gets a number between 0 and 1
+            r = uniform(0, 1)
+            print(r)
+    
+            i = int( (r*wlen) )
+            j = int( ((1 -r)*wlen) )
+
+            placeholders = i 
+
+            if j >= placeholders:
+                i = j
+                j = placeholders
+
+    
+            if (i+j) < wlen:
+
+                if i > j:
+                    i += 1
+    
+            return ("a"*i) + ("b"*j) 
+
+
+
+
+
+
+        
+        
+
+
+
