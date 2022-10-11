@@ -458,7 +458,10 @@ class Cuantificada(Formula):
         else:
             raise Exception('¡Oh, Oh, problemas!')
         if len(formulas) > 1:
-            return Ytoria([str(f) for f in formulas])
+            if cuantif == '∧':
+                return Ytoria([str(f) for f in formulas])
+            else:
+                return Otoria([str(f) for f in formulas])
         else:
             return str(formulas[0])
 
